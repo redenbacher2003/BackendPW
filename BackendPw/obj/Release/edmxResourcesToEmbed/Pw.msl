@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PWModelStoreContainer" CdmEntityContainer="PWEntities">
+    <EntitySetMapping Name="PWDetails">
+      <EntityTypeMapping TypeName="PWModel.PWDetail">
+        <MappingFragment StoreEntitySet="PWDetail">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PWTypeId" ColumnName="PWTypeId" />
+          <ScalarProperty Name="PW" ColumnName="PW" />
+          <ScalarProperty Name="Added" ColumnName="Added" />
+          <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PWTypes">
+      <EntityTypeMapping TypeName="PWModel.PWType">
+        <MappingFragment StoreEntitySet="PWType">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="For" ColumnName="For" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Added" ColumnName="Added" />
+          <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,12 @@
+R:\CSharp\Project\BackEndPw\BackendPw\BackendPw\bin\Debug\BackendPw.dll.config
+R:\CSharp\Project\BackEndPw\BackendPw\BackendPw\bin\Debug\BackendPw.dll
+R:\CSharp\Project\BackEndPw\BackendPw\BackendPw\bin\Debug\BackendPw.pdb
+R:\CSharp\Project\BackEndPw\BackendPw\BackendPw\bin\Debug\EntityFramework.dll
+R:\CSharp\Project\BackEndPw\BackendPw\BackendPw\bin\Debug\EntityFramework.SqlServer.dll
+R:\CSharp\Project\BackEndPw\BackendPw\BackendPw\bin\Debug\EntityFramework.xml
+R:\CSharp\Project\BackEndPw\BackendPw\BackendPw\bin\Debug\EntityFramework.SqlServer.xml
+R:\CSharp\Project\BackEndPw\BackendPw\BackendPw\obj\Debug\BackendPw.csproj.AssemblyReference.cache
+R:\CSharp\Project\BackEndPw\BackendPw\BackendPw\obj\Debug\BackendPw.csproj.CoreCompileInputs.cache
+R:\CSharp\Project\BackEndPw\BackendPw\BackendPw\obj\Debug\BackendPw.csproj.CopyComplete
+R:\CSharp\Project\BackEndPw\BackendPw\BackendPw\obj\Debug\BackendPw.dll
+R:\CSharp\Project\BackEndPw\BackendPw\BackendPw\obj\Debug\BackendPw.pdb
