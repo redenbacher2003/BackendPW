@@ -8,6 +8,7 @@
     <Property Name="Name" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="StartDate" Type="datetime" Nullable="false" />
     <Property Name="FinishDate" Type="datetime" />
+    <Property Name="thumbnail" Type="varchar" MaxLength="50" />
     <Property Name="Added" Type="datetime" Nullable="false" />
     <Property Name="AddedBy" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>

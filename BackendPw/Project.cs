@@ -20,5 +20,6 @@ namespace BackendPw
         public Nullable<System.DateTime> FinishDate { get; set; }
         public System.DateTime Added { get; set; }
         public string AddedBy { get; set; }
+        public string thumbnail { get; set; }
     }
 }

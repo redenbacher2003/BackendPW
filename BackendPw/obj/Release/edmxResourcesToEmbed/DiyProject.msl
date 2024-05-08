@@ -4,6 +4,7 @@
     <EntitySetMapping Name="Projects">
       <EntityTypeMapping TypeName="DiyProjectModel.Project">
         <MappingFragment StoreEntitySet="Project">
+          <ScalarProperty Name="thumbnail" ColumnName="thumbnail" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="StartDate" ColumnName="StartDate" />

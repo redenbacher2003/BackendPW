@@ -22,21 +22,29 @@ namespace BackendPw
         /// <param startDate="startDate"></param>
         /// <returns>Project Object</returns>
         /// <exception cref="DiyProjectFoundException"></exception>
-        public Project addProject(string projectName, DateTime startDate) {
+        /// 
+        public async Task<string> addProject_Async(string projectName, DateTime startDate)
+        {
+            Project project = await Task.Run(() => addProject(projectName, startDate));
+            return JsonConvert.SerializeObject(project);
+        }
+        public Project addProject(string projectName, DateTime startDate)
+        {
 
-            Project newProject = new Project(); 
-  
+            Project newProject = new Project();
+
             if (projectName == null || startDate == null)
             {
                 throw new DiyProjectAddException("Project Name and Start Date must both be supplied!");
             }
 
             else
-            { 
+            {
                 if (getDiyProjectByName(projectName) == null)
                 {
                     //add it!
-                    Project project = new Project() { 
+                    Project project = new Project()
+                    {
                         Name = projectName,
                         StartDate = startDate,
                     };
@@ -52,6 +60,58 @@ namespace BackendPw
                 return newProject;
             }
         }
+        public async Task<string> UpdateProject_Async(int projectId, string projectName, DateTime startDate, DateTime finishDate, string thumbNail)
+        {
+            Project project = await Task.Run(() => UpdateProject(projectId, projectName, startDate, finishDate, thumbNail));
+            return JsonConvert.SerializeObject(project);
+        }
+        public Project UpdateProject(int projectId, string projectName, DateTime startDate, DateTime finishDate, string thumbNail)
+        {
+            Project project = new Project();
+            if (projectId <= 0)
+            {
+                throw new DiyProjectAddException("Project Id must be supplied!");
+            }
+            else
+            {
+                project = entities.Projects.FirstOrDefault(p => p.id == projectId);
+                project.Name = projectName;
+                project.StartDate = startDate;
+                project.FinishDate = finishDate;
+                project.thumbnail = thumbNail;
+                entities.SaveChanges();
+                return project;
+            }
+        }
+
+        public async Task<string> UpdateProjectMaterial_Async(int projectMaterialId, string materialName, int quantity, decimal amount, string storeName, DateTime purchaseDate)
+        {
+            ProjectMaterial projectMaterial = await Task.Run(() => UpdateProjectMaterial(projectMaterialId, materialName, quantity, amount, storeName, purchaseDate));
+            return JsonConvert.SerializeObject(projectMaterial);
+        }
+
+        public ProjectMaterial UpdateProjectMaterial(int projectMaterialId, string materialName, int quantity, decimal amount, string storeName, DateTime purchaseDate)
+        {
+            ProjectMaterial material = new ProjectMaterial();
+
+            if (projectMaterialId <= 0)
+            {
+                throw new DiyProjectMaterialAddException("projectMaterialId must be supplied.");
+            }
+            else
+            {
+                material = entities.ProjectMaterials.FirstOrDefault(p => p.Id == projectMaterialId);
+                material.MaterialName = materialName;
+                material.Quantity = quantity;
+                material.Amount = amount;
+                material.StoreName = storeName;
+                material.PurchaseDate = purchaseDate;
+                entities.SaveChanges();
+                return material;
+
+
+            }
+        }
 
         public async Task<string> getProjects_Async()
         {
@@ -60,7 +120,7 @@ namespace BackendPw
         }
         public List<Project> getProjects()
         {
-        
+
             return entities.Projects.ToList<Project>();
 
         }
@@ -69,38 +129,53 @@ namespace BackendPw
             Project diyProject = new Project();
 
             return entities.Projects.FirstOrDefault(p => p.Name == projectName);
-            
+
         }
         /// <summary>
         /// Gets list of Project Materies by Project Id
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns>List<ProjectMaterial></returns>
-        public IEnumerable<DiyProjectIdDetail> getMaterialsByProjectId(int projectId) {
+        public async Task<string> getMaterialsByProjectId_Async(int projectId)
+        {
+            IEnumerable<DiyProjectIdDetail> ProjectDetails = await Task.Run(() => getMaterialsByProjectId(projectId));
+            return JsonConvert.SerializeObject(ProjectDetails);
+        }
+        /// <summary>
+        /// Gets list of Project Materies by Project Id
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns>List<ProjectMaterial></returns>
+        public IEnumerable<DiyProjectIdDetail> getMaterialsByProjectId(int projectId)
+        {
 
             IEnumerable<DiyProjectIdDetail> diyProjectIdDetails = new List<DiyProjectIdDetail>();
 
             diyProjectIdDetails = from project in entities.Projects
-                                    join projectMaterials in entities.ProjectMaterials on project.id equals projectMaterials.ProjectId
-                                    orderby (projectMaterials.Id)
-                                    where projectMaterials.ProjectId == projectId
-                                    select new DiyProjectIdDetail
-                                    {
-                                        Id = projectMaterials.Id,
-                                        Name = project.Name,
-                                        diyProjectId = project.id,
-                                        materialName = projectMaterials.MaterialName,
-                                        quantity = projectMaterials.Quantity,
-                                        amount =  projectMaterials.Amount,
-                                        StoreName = projectMaterials.StoreName,
-                                        purchaseDate = projectMaterials.PurchaseDate,
-                                        added = projectMaterials.Added,
-                                        addedBy = projectMaterials.AddedBy
-                                    };
+                                  join projectMaterials in entities.ProjectMaterials on project.id equals projectMaterials.ProjectId
+                                  orderby (projectMaterials.Id)
+                                  where projectMaterials.ProjectId == projectId
+                                  select new DiyProjectIdDetail
+                                  {
+                                      Id = projectMaterials.Id,
+                                      Name = project.Name,
+                                      diyProjectId = project.id,
+                                      materialName = projectMaterials.MaterialName,
+                                      quantity = projectMaterials.Quantity,
+                                      amount = projectMaterials.Amount,
+                                      StoreName = projectMaterials.StoreName,
+                                      purchaseDate = projectMaterials.PurchaseDate,
+                                      added = projectMaterials.Added,
+                                      addedBy = projectMaterials.AddedBy
+                                  };
 
             return diyProjectIdDetails;
         }
-
+        public async Task<string> getDiyProjectMaterialById_Async(int materialId)
+        {
+            IEnumerable<DiyProjectMaterial> diyProjectMaterial = await Task.Run(() => getDiyProjectMaterialById(materialId));
+            return JsonConvert.SerializeObject(diyProjectMaterial);
+        }
         public IQueryable<DiyProjectMaterial> getDiyProjectMaterialById(int materialId)
         {
             var diyProjectMaterial = from ProjectMaterial material in entities.ProjectMaterials
@@ -154,6 +229,12 @@ namespace BackendPw
             return diyProjectMaterial;
         }
 
+        public async Task<string> addMaterialBydiyProjectId_Async(int diyProjectId, string storeName, string materialName, int quantity, decimal amount, DateTime purchaseDate, string user)
+        {
+            DiyProjectMaterial projectMaterial = await Task.Run(() => addMaterialBydiyProjectId(diyProjectId, storeName, materialName, quantity, amount, purchaseDate, user));
+            return JsonConvert.SerializeObject(projectMaterial);
+        }
+
         /// <summary>
         /// Adds Diy Project material by project id
         /// </summary>
@@ -168,7 +249,7 @@ namespace BackendPw
         /// <exception cref="DiyProjectAddException"></exception>
         public DiyProjectMaterial addMaterialBydiyProjectId(int diyProjectId, string storeName, string materialName, int quantity, decimal amount, DateTime purchaseDate, string user)
         {
-            DiyProjectMaterial diyProjectMaterial = new DiyProjectMaterial();
+            DiyProjectMaterial newProjectMaterial = new DiyProjectMaterial();
 
             if (diyProjectId == 0 || storeName == null || materialName == null || quantity == 0 || amount == 0)
             {
@@ -184,7 +265,7 @@ namespace BackendPw
                     ProjectMaterial projectMaterial = new ProjectMaterial()
                     {
                         StoreName = storeName,
-                        MaterialName= materialName,
+                        MaterialName = materialName,
                         Quantity = quantity,
                         Amount = amount,
                         PurchaseDate = purchaseDate,
@@ -195,14 +276,14 @@ namespace BackendPw
                     entities.ProjectMaterials.Add(projectMaterial);
                     entities.SaveChanges();
 
-                    diyProjectMaterial = getDiyProjectMaterialById(projectMaterial.Id).FirstOrDefault();
-                        
-                    
+                    newProjectMaterial = getDiyProjectMaterialById(projectMaterial.Id).FirstOrDefault();
+
+
                 }
             }
 
-            return diyProjectMaterial;
-            
+            return newProjectMaterial;
+
         }
 
     }
