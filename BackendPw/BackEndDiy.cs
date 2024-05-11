@@ -23,12 +23,12 @@ namespace BackendPw
         /// <returns>Project Object</returns>
         /// <exception cref="DiyProjectFoundException"></exception>
         /// 
-        public async Task<string> addProject_Async(string projectName, DateTime startDate)
+        public async Task<string> addProject_Async(string projectName, DateTime startDate, DateTime finishDate, string thumbNail, string addedBy, DateTime added)
         {
-            Project project = await Task.Run(() => addProject(projectName, startDate));
+            Project project = await Task.Run(() => addProject(projectName, startDate, finishDate, thumbNail, addedBy, added));
             return JsonConvert.SerializeObject(project);
         }
-        public Project addProject(string projectName, DateTime startDate)
+        public Project addProject(string projectName, DateTime startDate, DateTime finishDate, string thumbNail, string addedBy, DateTime added)
         {
 
             Project newProject = new Project();
@@ -47,6 +47,10 @@ namespace BackendPw
                     {
                         Name = projectName,
                         StartDate = startDate,
+                        FinishDate = finishDate,
+                        thumbnail = thumbNail,
+                        AddedBy = addedBy,  
+                        Added = added 
                     };
 
                     entities.Projects.Add(project);
