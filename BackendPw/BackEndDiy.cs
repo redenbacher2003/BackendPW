@@ -268,6 +268,7 @@ namespace BackendPw
 
                     ProjectMaterial projectMaterial = new ProjectMaterial()
                     {
+                        ProjectId = diyProjectId,
                         StoreName = storeName,
                         MaterialName = materialName,
                         Quantity = quantity,
