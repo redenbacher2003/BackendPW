@@ -91,7 +91,17 @@ namespace BackendPw
         public async Task<string> UpdateProjectMaterial_Async(int projectMaterialId, string materialName, int quantity, decimal amount, string storeName, DateTime purchaseDate)
         {
             ProjectMaterial projectMaterial = await Task.Run(() => UpdateProjectMaterial(projectMaterialId, materialName, quantity, amount, storeName, purchaseDate));
-            return JsonConvert.SerializeObject(projectMaterial);
+            DiyProjectMaterial diyProjectMaterial = new DiyProjectMaterial()
+            {
+                materialName = projectMaterial.MaterialName,
+                quantity = projectMaterial.Quantity,
+                amount = projectMaterial.Amount,
+                purchaseDate = projectMaterial.PurchaseDate,
+                id = projectMaterial.Id,
+                diyProjectId = projectMaterial.ProjectId,
+                storeName = projectMaterial.StoreName
+            };
+            return JsonConvert.SerializeObject(diyProjectMaterial);
         }
 
         public ProjectMaterial UpdateProjectMaterial(int projectMaterialId, string materialName, int quantity, decimal amount, string storeName, DateTime purchaseDate)
@@ -106,7 +116,7 @@ namespace BackendPw
             {
                 material = entities.ProjectMaterials.FirstOrDefault(p => p.Id == projectMaterialId);
                 material.MaterialName = materialName;
-                material.Quantity = quantity;
+                material.Quantity    = quantity;
                 material.Amount = amount;
                 material.StoreName = storeName;
                 material.PurchaseDate = purchaseDate;
@@ -167,7 +177,7 @@ namespace BackendPw
                                       materialName = projectMaterials.MaterialName,
                                       quantity = projectMaterials.Quantity,
                                       amount = projectMaterials.Amount,
-                                      StoreName = projectMaterials.StoreName,
+                                      storeName = projectMaterials.StoreName,
                                       purchaseDate = projectMaterials.PurchaseDate,
                                       added = projectMaterials.Added,
                                       addedBy = projectMaterials.AddedBy
@@ -194,7 +204,7 @@ namespace BackendPw
                                          storeName = material.StoreName,
                                          purchaseDate = material.PurchaseDate,
                                          added = material.Added,
-                                         addedBy = material.AddedBy
+                                         addedBy = material.AddedBy 
                                      };
 
             return diyProjectMaterial;

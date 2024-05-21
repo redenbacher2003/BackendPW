@@ -29,7 +29,7 @@ namespace BackendPw.CustomObject
         public string materialName { get; set; }
         public int? quantity { get; set; }
         public decimal? amount { get; set; }
-        public string StoreName { get; set; }
+        public string storeName { get; set; }
         public DateTime? purchaseDate { get; set; }
         public DateTime added { get; set; }
         public string addedBy { get; set; }
