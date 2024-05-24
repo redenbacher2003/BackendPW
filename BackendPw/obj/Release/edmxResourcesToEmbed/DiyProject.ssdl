@@ -12,6 +12,17 @@
     <Property Name="Added" Type="datetime" Nullable="false" />
     <Property Name="AddedBy" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
+  <EntityType Name="ProjectGallery">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="imageType" Type="char" MaxLength="10" Nullable="false" />
+    <Property Name="image" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="added" Type="datetime" Nullable="false" />
+    <Property Name="addedBy" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
   <EntityType Name="ProjectMaterial">
     <Key>
       <PropertyRef Name="Id" />
@@ -25,9 +36,12 @@
     <Property Name="PurchaseDate" Type="datetime" />
     <Property Name="Added" Type="datetime" Nullable="false" />
     <Property Name="AddedBy" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Deleted" Type="datetime" />
+    <Property Name="DeletedBy" Type="varchar" MaxLength="20" />
   </EntityType>
   <EntityContainer Name="DiyProjectModelStoreContainer">
     <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectGallery" EntityType="Self.ProjectGallery" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProjectMaterial" EntityType="Self.ProjectMaterial" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

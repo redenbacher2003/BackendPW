@@ -19,7 +19,7 @@ namespace BackendPw
 {
     public class PwManager
     {
-        
+
         public PWType AddPW(string forWhatType, string forDescription, string user)
         {
             PWType newPwTye = new PWType();
@@ -28,7 +28,7 @@ namespace BackendPw
 
             newPwTye = PWExist(forWhatType);
 
-            if (newPwTye!= null)
+            if (newPwTye != null)
             {
                 return newPwTye;
             }
@@ -50,7 +50,7 @@ namespace BackendPw
                         pWEntities.PWTypes.Add(pWType);
                         pWEntities.SaveChanges();
                         id = pWType.Id;
-                        newPwTye = pWType; 
+                        newPwTye = pWType;
                     }
                 }
                 catch (Exception ex)
@@ -69,7 +69,7 @@ namespace BackendPw
         public async Task<string> AddPW_Async(string forWhatType, string forDescription, string user)
         {
             var pwType = await Task.Run(() => this.AddPW(forWhatType, forDescription, user));
-            if (pwType.Id <=0 )
+            if (pwType.Id <= 0)
             {
                 return JsonConvert.SerializeObject(BackendPw.Validation.Validation.Create_Exception(pwType.Id, string.Format("Password for : {0} not created.", forWhatType)));
             }
@@ -94,9 +94,9 @@ namespace BackendPw
 
         public async Task<string> AddPwForType_Async(int Id, string pw, string user)
         {
-            
+
             PwTypeDetail pwTypeDetail = new PwTypeDetail();
-           
+
 
             var pwDetailId = await Task.Run(() => this.AddPwFor(Id, pw, user));
             if (pwDetailId > 0)
@@ -105,11 +105,11 @@ namespace BackendPw
                 return JsonConvert.SerializeObject(pwTypeDetail);
             }
 
-            else 
+            else
             {
                 return JsonConvert.SerializeObject(Validation.Validation.Create_Exception(pwDetailId, string.Format("Password for : {0} does not exist.")));
             }
-          
+
         }
 
         /* adding password by id */
@@ -256,10 +256,10 @@ namespace BackendPw
             return true;
         }
 
-       public PwTypeDetail PwTypeDetailGet(int Id)
+        public PwTypeDetail PwTypeDetailGet(int Id)
         {
             PWEntities pWEntities = new PWEntities();
-            
+
             PwTypeDetail pwTypeDetail = new PwTypeDetail();
 
             IEnumerable<PwTypeDetail> pWTypeDetails = new List<PwTypeDetail>();
@@ -280,7 +280,7 @@ namespace BackendPw
                                 AddedBy = pwDetail.AddedBy,
                                 Added = pwDetail.Added,
                                 Deleted = pwDetail.Deleted
-                            } ;
+                            };
 
             pwTypeDetail = pWTypeDetails.FirstOrDefault();
 

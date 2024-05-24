@@ -9,6 +9,7 @@ using BackendPw.Validation;
 using System.Security.Cryptography;
 using Newtonsoft.Json;
 using System.Security.Cryptography.X509Certificates;
+using System.ComponentModel;
 
 namespace BackendPw
 {
@@ -49,8 +50,8 @@ namespace BackendPw
                         StartDate = startDate,
                         FinishDate = finishDate,
                         thumbnail = thumbNail,
-                        AddedBy = addedBy,  
-                        Added = added 
+                        AddedBy = addedBy,
+                        Added = added
                     };
 
                     entities.Projects.Add(project);
@@ -116,7 +117,7 @@ namespace BackendPw
             {
                 material = entities.ProjectMaterials.FirstOrDefault(p => p.Id == projectMaterialId);
                 material.MaterialName = materialName;
-                material.Quantity    = quantity;
+                material.Quantity = quantity;
                 material.Amount = amount;
                 material.StoreName = storeName;
                 material.PurchaseDate = purchaseDate;
@@ -126,7 +127,32 @@ namespace BackendPw
 
             }
         }
+        /// <summary>
+        /// Soft deletes project material
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <param name="user"></param>
+        /// <returns>Boolean</returns>
+        public async Task<string> deleteMaterial_Async(int projectMaterialId, string user)
+        {
+            var deletematerial = await Task.Run(() => deleteMaterial(projectMaterialId, user));
+            return JsonConvert.SerializeObject(deletematerial);
+        }
 
+        private Boolean deleteMaterial(int projectMaterialId, string user)
+        {
+       
+            var projectMaterials = entities.ProjectMaterials.Where(p => p.Id == projectMaterialId).ToList();
+            foreach (ProjectMaterial projectMaterial in projectMaterials)
+            {
+                projectMaterial.Deleted = DateTime.Now;
+                projectMaterial.DeletedBy = user;
+                entities.SaveChanges();
+            } 
+
+            return true;
+        }
+        
         public async Task<string> getProjects_Async()
         {
             List<Project> Project = await Task.Run(() => getProjects());
@@ -204,7 +230,7 @@ namespace BackendPw
                                          storeName = material.StoreName,
                                          purchaseDate = material.PurchaseDate,
                                          added = material.Added,
-                                         addedBy = material.AddedBy 
+                                         addedBy = material.AddedBy
                                      };
 
             return diyProjectMaterial;
@@ -300,6 +326,66 @@ namespace BackendPw
             return newProjectMaterial;
 
         }
+
+        /// <summary>
+        /// Gets Thumbnail images
+        /// </summary>
+        /// <returns><IEnumerable<ProjectGallery></returns>
+        public async Task<string> projectThumbnailGetByProjectId_Async()
+        {
+            IEnumerable<ProjectGallery> gallery = await Task.Run(() => projectGalleriesGetThumbnailImages());
+            return JsonConvert.SerializeObject(gallery);
+        }
+
+        /// <summary>
+        /// Gets images by projectId
+        /// </summary>
+        /// <param [projectId]="projectId"></param>
+        /// <returns><IEnumerable<ProjectGallery></returns>
+        public async Task<string> projectGalleriesGetByProjectId_Async(int projectId)
+        {
+            IEnumerable<ProjectGallery> gallery = await Task.Run(() => projectGalleriesGetByProjectId(projectId));
+
+            return JsonConvert.SerializeObject(gallery);
+        }
+        IEnumerable<ProjectGallery> projectGalleriesGetThumbnailImages()
+        {
+
+            var projectGalleries = from ProjectGallery gallery in entities.ProjectGalleries
+                                   where gallery.imageType == "Thumbnail" 
+                                   select new ProjectGallery()
+                                   {
+                                       id = gallery.id,
+                                       ProjectId = gallery.ProjectId,
+                                       imageType = gallery.imageType,
+                                       image = gallery.image,
+                                       added = gallery.added,
+                                       addedBy = gallery.addedBy
+                                   };
+
+            return projectGalleries;
+        }
+
+        IEnumerable<ProjectGallery> projectGalleriesGetByProjectId(int projectId)
+        {
+
+            var projectGalleries = from ProjectGallery gallery in entities.ProjectGalleries
+                                   where gallery.imageType == "Image" && gallery.ProjectId == projectId
+                                   select new ProjectGallery()
+                                   {
+                                       id = gallery.id,
+                                       ProjectId = gallery.ProjectId,
+                                       imageType = gallery.imageType,
+                                       image = gallery.image,
+                                       added = gallery.added,
+                                       addedBy = gallery.addedBy
+                                   };
+                                   
+
+            return projectGalleries;
+        }
+
+
 
     }
 }

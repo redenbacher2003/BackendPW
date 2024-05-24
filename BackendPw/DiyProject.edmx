@@ -17,6 +17,17 @@
           <Property Name="Added" Type="datetime" Nullable="false" />
           <Property Name="AddedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
+        <EntityType Name="ProjectGallery">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProjectId" Type="int" Nullable="false" />
+          <Property Name="imageType" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="image" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="added" Type="datetime" Nullable="false" />
+          <Property Name="addedBy" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
         <EntityType Name="ProjectMaterial">
           <Key>
             <PropertyRef Name="Id" />
@@ -30,9 +41,12 @@
           <Property Name="PurchaseDate" Type="datetime" />
           <Property Name="Added" Type="datetime" Nullable="false" />
           <Property Name="AddedBy" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Deleted" Type="datetime" />
+          <Property Name="DeletedBy" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityContainer Name="DiyProjectModelStoreContainer">
           <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectGallery" EntityType="Self.ProjectGallery" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProjectMaterial" EntityType="Self.ProjectMaterial" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -64,11 +78,25 @@
           <Property Name="PurchaseDate" Type="DateTime" Precision="3" />
           <Property Name="Added" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="AddedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Deleted" Type="DateTime" Precision="3" />
+          <Property Name="DeletedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityContainer Name="DiyProjectEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Projects" EntityType="Self.Project" />
           <EntitySet Name="ProjectMaterials" EntityType="Self.ProjectMaterial" />
+          <EntitySet Name="ProjectGalleries" EntityType="DiyProjectModel.ProjectGallery" />
         </EntityContainer>
+        <EntityType Name="ProjectGallery">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProjectId" Type="Int32" Nullable="false" />
+          <Property Name="imageType" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="image" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="added" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="addedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -91,6 +119,8 @@
           <EntitySetMapping Name="ProjectMaterials">
             <EntityTypeMapping TypeName="DiyProjectModel.ProjectMaterial">
               <MappingFragment StoreEntitySet="ProjectMaterial">
+                <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
                 <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
@@ -100,6 +130,18 @@
                 <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
                 <ScalarProperty Name="Added" ColumnName="Added" />
                 <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectGalleries">
+            <EntityTypeMapping TypeName="DiyProjectModel.ProjectGallery">
+              <MappingFragment StoreEntitySet="ProjectGallery">
+                <ScalarProperty Name="addedBy" ColumnName="addedBy" />
+                <ScalarProperty Name="added" ColumnName="added" />
+                <ScalarProperty Name="image" ColumnName="image" />
+                <ScalarProperty Name="imageType" ColumnName="imageType" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

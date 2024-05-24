@@ -75,6 +75,9 @@
     <Compile Include="Project.cs">
       <DependentUpon>DiyProject.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProjectGallery.cs">
+      <DependentUpon>DiyProject.tt</DependentUpon>
+    </Compile>
     <Compile Include="ProjectMaterial.cs">
       <DependentUpon>DiyProject.tt</DependentUpon>
     </Compile>

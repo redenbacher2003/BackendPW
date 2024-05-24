@@ -12,18 +12,13 @@ namespace BackendPw
     using System;
     using System.Collections.Generic;
     
-    public partial class ProjectMaterial
+    public partial class ProjectGallery
     {
-        public int Id { get; set; }
+        public int id { get; set; }
         public int ProjectId { get; set; }
-        public string MaterialName { get; set; }
-        public Nullable<int> Quantity { get; set; }
-        public Nullable<decimal> Amount { get; set; }
-        public string StoreName { get; set; }
-        public Nullable<System.DateTime> PurchaseDate { get; set; }
-        public System.DateTime Added { get; set; }
-        public string AddedBy { get; set; }
-        public Nullable<System.DateTime> Deleted { get; set; }
-        public string DeletedBy { get; set; }
+        public string imageType { get; set; }
+        public string image { get; set; }
+        public System.DateTime added { get; set; }
+        public string addedBy { get; set; }
     }
 }

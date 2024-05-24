@@ -25,9 +25,23 @@
     <Property Name="PurchaseDate" Type="DateTime" Precision="3" />
     <Property Name="Added" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="AddedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Deleted" Type="DateTime" Precision="3" />
+    <Property Name="DeletedBy" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityContainer Name="DiyProjectEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Projects" EntityType="Self.Project" />
     <EntitySet Name="ProjectMaterials" EntityType="Self.ProjectMaterial" />
+    <EntitySet Name="ProjectGalleries" EntityType="DiyProjectModel.ProjectGallery" />
   </EntityContainer>
+  <EntityType Name="ProjectGallery">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="Int32" Nullable="false" />
+    <Property Name="imageType" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="image" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="added" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="addedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

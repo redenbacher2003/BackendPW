@@ -17,6 +17,8 @@
     <EntitySetMapping Name="ProjectMaterials">
       <EntityTypeMapping TypeName="DiyProjectModel.ProjectMaterial">
         <MappingFragment StoreEntitySet="ProjectMaterial">
+          <ScalarProperty Name="DeletedBy" ColumnName="DeletedBy" />
+          <ScalarProperty Name="Deleted" ColumnName="Deleted" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
           <ScalarProperty Name="MaterialName" ColumnName="MaterialName" />
@@ -26,6 +28,18 @@
           <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
           <ScalarProperty Name="Added" ColumnName="Added" />
           <ScalarProperty Name="AddedBy" ColumnName="AddedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectGalleries">
+      <EntityTypeMapping TypeName="DiyProjectModel.ProjectGallery">
+        <MappingFragment StoreEntitySet="ProjectGallery">
+          <ScalarProperty Name="addedBy" ColumnName="addedBy" />
+          <ScalarProperty Name="added" ColumnName="added" />
+          <ScalarProperty Name="image" ColumnName="image" />
+          <ScalarProperty Name="imageType" ColumnName="imageType" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

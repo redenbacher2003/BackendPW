@@ -27,5 +27,6 @@ namespace BackendPw
     
         public virtual DbSet<Project> Projects { get; set; }
         public virtual DbSet<ProjectMaterial> ProjectMaterials { get; set; }
+        public virtual DbSet<ProjectGallery> ProjectGalleries { get; set; }
     }
 }

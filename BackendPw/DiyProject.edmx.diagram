@@ -7,6 +7,7 @@
       <Diagram DiagramId="a033f6089cba41bcaa1aa29b92bd8f80" Name="Diagram1">
         <EntityTypeShape EntityType="DiyProjectModel.Project" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DiyProjectModel.ProjectMaterial" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiyProjectModel.ProjectGallery" Width="1.5" PointX="0.625" PointY="3.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
