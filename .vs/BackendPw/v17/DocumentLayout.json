@@ -7,8 +7,8 @@
       "RelativeMoniker": "D:0:0:{D1E56595-51DE-47D9-B559-3D9B4976DB53}|BackendPw\\BackendPw.csproj|solutionrelative:backendpw\\backenddiy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{D1E56595-51DE-47D9-B559-3D9B4976DB53}|BackendPw\\BackendPw.csproj|F:\\CSharp\\Project\\BackEndPw\\BackendPw\\backendpw\\backendpw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{D1E56595-51DE-47D9-B559-3D9B4976DB53}|BackendPw\\BackendPw.csproj|solutionrelative:backendpw\\backendpw.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{D1E56595-51DE-47D9-B559-3D9B4976DB53}|BackendPw\\BackendPw.csproj|F:\\CSharp\\Project\\BackEndPw\\BackendPw\\backendpw\\customobject\\diyprojectobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D1E56595-51DE-47D9-B559-3D9B4976DB53}|BackendPw\\BackendPw.csproj|solutionrelative:backendpw\\customobject\\diyprojectobject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,11 +18,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "DiyProjectObject.cs",
+              "DocumentMoniker": "F:\\CSharp\\Project\\BackEndPw\\BackendPw\\BackendPw\\CustomObject\\DiyProjectObject.cs",
+              "RelativeDocumentMoniker": "BackendPw\\CustomObject\\DiyProjectObject.cs",
+              "ToolTip": "F:\\CSharp\\Project\\BackEndPw\\BackendPw\\BackendPw\\CustomObject\\DiyProjectObject.cs",
+              "RelativeToolTip": "BackendPw\\CustomObject\\DiyProjectObject.cs",
+              "ViewState": "AQIAACsAAAAAAAAAAAA8wDcAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-05-24T18:53:20.643Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -32,22 +45,10 @@
               "RelativeDocumentMoniker": "BackendPw\\BackEndDiy.cs",
               "ToolTip": "F:\\CSharp\\Project\\BackEndPw\\BackendPw\\BackendPw\\BackEndDiy.cs",
               "RelativeToolTip": "BackendPw\\BackEndDiy.cs",
-              "ViewState": "AQIAAGUBAAAAAAAAAAAqwFwBAAA2AAAA",
+              "ViewState": "AQIAAF8BAAAAAAAAAAD4v3wBAABPAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-05-24T04:50:52.798Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BackEndPw.cs",
-              "DocumentMoniker": "F:\\CSharp\\Project\\BackEndPw\\BackendPw\\BackendPw\\BackEndPw.cs",
-              "RelativeDocumentMoniker": "BackendPw\\BackEndPw.cs",
-              "ToolTip": "F:\\CSharp\\Project\\BackEndPw\\BackendPw\\BackendPw\\BackEndPw.cs",
-              "RelativeToolTip": "BackendPw\\BackEndPw.cs",
-              "ViewState": "AQIAAOAAAAAAAAAAAAAvwO4AAABJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-05-24T04:44:05.851Z"
             }
           ]
         }

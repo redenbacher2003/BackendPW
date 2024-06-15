@@ -20,5 +20,6 @@ namespace BackendPw
         public string image { get; set; }
         public System.DateTime added { get; set; }
         public string addedBy { get; set; }
+        public string imageThumbnail { get; set; }
     }
 }

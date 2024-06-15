@@ -194,7 +194,7 @@ namespace BackendPw
             diyProjectIdDetails = from project in entities.Projects
                                   join projectMaterials in entities.ProjectMaterials on project.id equals projectMaterials.ProjectId
                                   orderby (projectMaterials.Id)
-                                  where projectMaterials.ProjectId == projectId
+                                  where projectMaterials.ProjectId == projectId && projectMaterials.Deleted == null 
                                   select new DiyProjectIdDetail
                                   {
                                       Id = projectMaterials.Id,
@@ -331,9 +331,9 @@ namespace BackendPw
         /// Gets Thumbnail images
         /// </summary>
         /// <returns><IEnumerable<ProjectGallery></returns>
-        public async Task<string> projectThumbnailGetByProjectId_Async()
+        public async Task<string> projectThumbnailGet_Async()
         {
-            IEnumerable<ProjectGallery> gallery = await Task.Run(() => projectGalleriesGetThumbnailImages());
+            IEnumerable<Gallery> gallery = await Task.Run(() => projectGalleriesGetThumbnailImages());
             return JsonConvert.SerializeObject(gallery);
         }
 
@@ -344,41 +344,41 @@ namespace BackendPw
         /// <returns><IEnumerable<ProjectGallery></returns>
         public async Task<string> projectGalleriesGetByProjectId_Async(int projectId)
         {
-            IEnumerable<ProjectGallery> gallery = await Task.Run(() => projectGalleriesGetByProjectId(projectId));
+            IEnumerable<Gallery> gallery = await Task.Run(() => projectGalleriesGetByProjectId(projectId));
 
             return JsonConvert.SerializeObject(gallery);
         }
-        IEnumerable<ProjectGallery> projectGalleriesGetThumbnailImages()
+        IQueryable<Gallery> projectGalleriesGetThumbnailImages()
         {
 
             var projectGalleries = from ProjectGallery gallery in entities.ProjectGalleries
                                    where gallery.imageType == "Thumbnail" 
-                                   select new ProjectGallery()
+                                   select new Gallery()
                                    {
                                        id = gallery.id,
                                        ProjectId = gallery.ProjectId,
                                        imageType = gallery.imageType,
-                                       image = gallery.image,
-                                       added = gallery.added,
-                                       addedBy = gallery.addedBy
+                                       image = gallery.image,        
+                                       imageThumbnail = gallery.imageThumbnail,
                                    };
 
             return projectGalleries;
         }
 
-        IEnumerable<ProjectGallery> projectGalleriesGetByProjectId(int projectId)
+        IEnumerable<Gallery> projectGalleriesGetByProjectId(int projectId)
         {
 
-            var projectGalleries = from ProjectGallery gallery in entities.ProjectGalleries
+            IEnumerable<Gallery> projectGalleries = new List<Gallery>();
+
+             projectGalleries = from ProjectGallery gallery in entities.ProjectGalleries
                                    where gallery.imageType == "Image" && gallery.ProjectId == projectId
-                                   select new ProjectGallery()
+                                   select new Gallery()
                                    {
                                        id = gallery.id,
                                        ProjectId = gallery.ProjectId,
                                        imageType = gallery.imageType,
-                                       image = gallery.image,
-                                       added = gallery.added,
-                                       addedBy = gallery.addedBy
+                                       image = gallery.image,            
+                                       imageThumbnail = gallery.imageThumbnail,
                                    };
                                    
 

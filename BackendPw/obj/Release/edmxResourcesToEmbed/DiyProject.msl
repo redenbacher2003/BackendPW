@@ -34,6 +34,7 @@
     <EntitySetMapping Name="ProjectGalleries">
       <EntityTypeMapping TypeName="DiyProjectModel.ProjectGallery">
         <MappingFragment StoreEntitySet="ProjectGallery">
+          <ScalarProperty Name="imageThumbnail" ColumnName="imageThumbnail" />
           <ScalarProperty Name="addedBy" ColumnName="addedBy" />
           <ScalarProperty Name="added" ColumnName="added" />
           <ScalarProperty Name="image" ColumnName="image" />

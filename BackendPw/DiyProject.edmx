@@ -25,6 +25,7 @@
           <Property Name="ProjectId" Type="int" Nullable="false" />
           <Property Name="imageType" Type="char" MaxLength="10" Nullable="false" />
           <Property Name="image" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="imageThumbnail" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="added" Type="datetime" Nullable="false" />
           <Property Name="addedBy" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
@@ -96,6 +97,7 @@
           <Property Name="image" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="added" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="addedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="imageThumbnail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -136,6 +138,7 @@
           <EntitySetMapping Name="ProjectGalleries">
             <EntityTypeMapping TypeName="DiyProjectModel.ProjectGallery">
               <MappingFragment StoreEntitySet="ProjectGallery">
+                <ScalarProperty Name="imageThumbnail" ColumnName="imageThumbnail" />
                 <ScalarProperty Name="addedBy" ColumnName="addedBy" />
                 <ScalarProperty Name="added" ColumnName="added" />
                 <ScalarProperty Name="image" ColumnName="image" />

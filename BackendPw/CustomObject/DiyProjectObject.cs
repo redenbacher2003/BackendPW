@@ -48,4 +48,13 @@ namespace BackendPw.CustomObject
     }
 
 
+    public class Gallery
+    {
+        public int id { get; set; }
+        public int ProjectId {get; set; }   
+        public string imageType {get; set; } 
+        public string image { get; set; }
+        public string imageThumbnail { get; set; }
+    }
+
 }

@@ -43,5 +43,6 @@
     <Property Name="image" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="added" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="addedBy" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="imageThumbnail" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>

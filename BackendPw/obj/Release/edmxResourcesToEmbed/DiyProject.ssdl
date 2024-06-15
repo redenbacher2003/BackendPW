@@ -20,6 +20,7 @@
     <Property Name="ProjectId" Type="int" Nullable="false" />
     <Property Name="imageType" Type="char" MaxLength="10" Nullable="false" />
     <Property Name="image" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="imageThumbnail" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="added" Type="datetime" Nullable="false" />
     <Property Name="addedBy" Type="varchar" MaxLength="20" Nullable="false" />
   </EntityType>
